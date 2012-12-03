@@ -124,7 +124,7 @@ module DefaultValueFor
     def initialize(attributes = nil, options = {})
       @initialization_attributes = attributes.is_a?(Hash) ? attributes.stringify_keys : {}
       
-      unless options[:without_protection]
+      unless options[:without_protection] || true
         if respond_to?(:mass_assignment_options) && options.has_key?(:as)
           @initialization_attributes = sanitize_for_mass_assignment(@initialization_attributes, options[:as])
         elsif respond_to?(:sanitize_for_mass_assignment)
